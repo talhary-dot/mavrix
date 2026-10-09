@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface HomeProps {
   onOpenModal: (plan?: string) => void;
@@ -49,6 +49,22 @@ const PROPERTY_CARDS = [
     type: 'Lead type: Buyer',
     price: '$180–$200',
   },
+  {
+    chip: 'Modern Farmhouse',
+    image: 'https://images.unsplash.com/photo-1741156386380-0236c72eb6f9?auto=format&fit=crop&w=700&q=70',
+    title: 'Historic Country Estate',
+    desc: 'Acreage and suburban fringe — active move-in ready buyers.',
+    type: 'Lead type: Buyer',
+    price: '$160–$210',
+  },
+  {
+    chip: 'Single-Family',
+    image: 'https://images.unsplash.com/photo-1760473537243-72168ffd273c?auto=format&fit=crop&w=700&q=70',
+    title: 'High-Growth Suburban',
+    desc: 'Relocation buyers — pre-approved with quick closing readiness.',
+    type: 'Lead type: Buyer',
+    price: '$140–$190',
+  },
 ];
 
 const FAQ_ITEMS = [
@@ -89,16 +105,86 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
     return () => clearInterval(timer);
   }, []);
 
-  // Property track offset state
-  const [propOffset, setPropOffset] = useState(0);
+  // Property slider ref & state
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  // Mouse drag-to-scroll state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState(0);
+  const [dragScrollLeft, setDragScrollLeft] = useState(0);
+
+  const checkScrollButtons = () => {
+    if (sliderRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    checkScrollButtons();
+    const el = sliderRef.current;
+    if (!el) return;
+
+    el.addEventListener('scroll', checkScrollButtons, { passive: true });
+    window.addEventListener('resize', checkScrollButtons);
+
+    // Convert mouse wheel vertical scroll to horizontal scroll when hovering over the slider
+    const handleWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const { scrollLeft, scrollWidth, clientWidth } = el;
+        const atStart = scrollLeft <= 0 && e.deltaY < 0;
+        const atEnd = scrollLeft >= scrollWidth - clientWidth - 2 && e.deltaY > 0;
+        if (!atStart && !atEnd) {
+          e.preventDefault();
+          el.scrollLeft += e.deltaY * 1.2;
+        }
+      }
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener('scroll', checkScrollButtons);
+      el.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('resize', checkScrollButtons);
+    };
+  }, []);
 
   const slideProps = (direction: number) => {
-    setPropOffset((prev) => {
-      const next = prev + direction;
-      if (next < 0) return 0;
-      if (next > 1) return 1;
-      return next;
-    });
+    if (sliderRef.current) {
+      const card = sliderRef.current.querySelector('.prop-card-item') as HTMLElement;
+      const scrollDistance = card ? card.offsetWidth + 20 : 340;
+      sliderRef.current.scrollBy({
+        left: direction * scrollDistance,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!sliderRef.current) return;
+    setIsDragging(true);
+    setDragStartX(e.pageX - sliderRef.current.offsetLeft);
+    setDragScrollLeft(sliderRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !sliderRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - dragStartX) * 1.4;
+    sliderRef.current.scrollLeft = dragScrollLeft - walk;
   };
 
   // Pricing pane toggle
@@ -116,9 +202,8 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
           {HERO_SLIDES.map((slide, index) => (
             <div
               key={index}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
-              }`}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
               style={{ backgroundImage: `url('${slide.image}')` }}
             />
           ))}
@@ -223,9 +308,8 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               key={i}
               onClick={() => setCurrentSlide(i)}
               aria-label={`Show slide ${i + 1}`}
-              className={`h-1 rounded-sm border-0 cursor-pointer transition-all ${
-                i === currentSlide ? 'w-8 bg-[#EED3B0]' : 'w-5 bg-white/30'
-              }`}
+              className={`h-1 rounded-sm border-0 cursor-pointer transition-all ${i === currentSlide ? 'w-8 bg-[#EED3B0]' : 'w-5 bg-white/30'
+                }`}
             />
           ))}
         </div>
@@ -293,7 +377,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
             <div className="flex gap-2.5">
               <button
                 onClick={() => slideProps(-1)}
-                className="w-11 h-11 rounded-full bg-white border border-[#14285A]/20 flex items-center justify-center cursor-pointer hover:bg-[#0D1B3D] hover:text-white transition-colors"
+                disabled={!canScrollLeft}
+                className={`w-11 h-11 rounded-full bg-white border border-[#14285A]/20 flex items-center justify-center transition-all ${
+                  canScrollLeft
+                    ? 'cursor-pointer hover:bg-[#0D1B3D] hover:text-white text-[#0D1B3D] shadow-sm active:scale-95'
+                    : 'opacity-40 cursor-not-allowed text-[#0D1B3D]/50'
+                }`}
                 aria-label="Previous"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -302,7 +391,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               </button>
               <button
                 onClick={() => slideProps(1)}
-                className="w-11 h-11 rounded-full bg-white border border-[#14285A]/20 flex items-center justify-center cursor-pointer hover:bg-[#0D1B3D] hover:text-white transition-colors"
+                disabled={!canScrollRight}
+                className={`w-11 h-11 rounded-full bg-white border border-[#14285A]/20 flex items-center justify-center transition-all ${
+                  canScrollRight
+                    ? 'cursor-pointer hover:bg-[#0D1B3D] hover:text-white text-[#0D1B3D] shadow-sm active:scale-95'
+                    : 'opacity-40 cursor-not-allowed text-[#0D1B3D]/50'
+                }`}
                 aria-label="Next"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -312,49 +406,54 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
             </div>
           </div>
 
-          <div className="overflow-hidden">
-            <div
-              className="flex gap-5 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${propOffset * 280}px)` }}
-            >
-              {PROPERTY_CARDS.map((card, i) => (
-                <div
-                  key={i}
-                  className="w-[280px] sm:w-[320px] shrink-0 bg-white rounded-2xl overflow-hidden border border-[#E4DCC9] shadow-[0_14px_30px_-18px_rgba(13,27,61,0.25)] group"
-                >
-                  <div className="relative h-52 overflow-hidden">
-                    <span className="absolute top-3.5 left-3.5 z-10 bg-[#0D1B3D]/80 text-white text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full backdrop-blur-sm">
-                      {card.chip}
-                    </span>
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h4 className="text-base font-bold text-[#0D1B3D] mb-1">{card.title}</h4>
-                    <p className="text-[13px] text-[#5B5A54] mb-3.5">{card.desc}</p>
-                    <div className="flex items-center justify-between pt-3 border-t border-[#E4DCC9] text-[12.5px] text-[#5B5A54]">
-                      <span>{card.type}</span>
-                      <b className="text-[#B8834A] font-semibold">{card.price}</b>
-                    </div>
+          <div
+            ref={sliderRef}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            className={`flex gap-5 overflow-x-auto no-scrollbar scroll-smooth py-3 px-1 select-none cursor-grab active:cursor-grabbing ${
+              isDragging ? 'cursor-grabbing select-none scroll-auto' : ''
+            }`}
+          >
+            {PROPERTY_CARDS.map((card, i) => (
+              <div
+                key={i}
+                className="prop-card-item w-[280px] sm:w-[320px] shrink-0 bg-white rounded-2xl overflow-hidden border border-[#E4DCC9] shadow-[0_14px_30px_-18px_rgba(13,27,61,0.25)] group select-none pointer-events-auto"
+              >
+                <div className="relative h-52 overflow-hidden">
+                  <span className="absolute top-3.5 left-3.5 z-10 bg-[#0D1B3D]/80 text-white text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full backdrop-blur-sm">
+                    {card.chip}
+                  </span>
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    draggable={false}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none select-none"
+                  />
+                </div>
+                <div className="p-5">
+                  <h4 className="text-base font-bold text-[#0D1B3D] mb-1">{card.title}</h4>
+                  <p className="text-[13px] text-[#5B5A54] mb-3.5">{card.desc}</p>
+                  <div className="flex items-center justify-between pt-3 border-t border-[#E4DCC9] text-[12.5px] text-[#5B5A54]">
+                    <span>{card.type}</span>
+                    <b className="text-[#B8834A] font-semibold">{card.price}</b>
                   </div>
                 </div>
-              ))}
-
-              <div className="w-[280px] sm:w-[320px] shrink-0 bg-gradient-to-br from-[#0D1B3D] to-[#14285A] rounded-2xl p-7 flex flex-col justify-center text-white">
-                <h4 className="text-xl font-bold mb-2">Don't see your market?</h4>
-                <p className="text-white/70 text-[13.5px] mb-6">
-                  We're onboarding new zip codes every week — tell us where you work and we'll check territory availability.
-                </p>
-                <button
-                  onClick={() => onOpenModal('Check Zip Code')}
-                  className="btn btn-primary self-start"
-                >
-                  Check my zip code →
-                </button>
               </div>
+            ))}
+
+            <div className="prop-card-item w-[280px] sm:w-[320px] shrink-0 bg-gradient-to-br from-[#0D1B3D] to-[#14285A] rounded-2xl p-7 flex flex-col justify-center text-white select-none">
+              <h4 className="text-xl font-bold mb-2">Don't see your market?</h4>
+              <p className="text-white/70 text-[13.5px] mb-6">
+                We're onboarding new zip codes every week — tell us where you work and we'll check territory availability.
+              </p>
+              <button
+                onClick={() => onOpenModal('Check Zip Code')}
+                className="btn btn-primary self-start"
+              >
+                Check my zip code →
+              </button>
             </div>
           </div>
         </div>
@@ -671,21 +770,19 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
           <div className="inline-flex p-1 bg-white/[0.08] border border-white/20 rounded-full mb-10">
             <button
               onClick={() => setPricingTab('monthly')}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all border-0 cursor-pointer ${
-                pricingTab === 'monthly'
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all border-0 cursor-pointer ${pricingTab === 'monthly'
                   ? 'bg-gradient-to-r from-[#EED3B0] to-[#B8834A] text-[#0D1B3D]'
                   : 'bg-transparent text-white/70 hover:text-white'
-              }`}
+                }`}
             >
               Monthly Plans
             </button>
             <button
               onClick={() => setPricingTab('perlead')}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all border-0 cursor-pointer ${
-                pricingTab === 'perlead'
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all border-0 cursor-pointer ${pricingTab === 'perlead'
                   ? 'bg-gradient-to-r from-[#EED3B0] to-[#B8834A] text-[#0D1B3D]'
                   : 'bg-transparent text-white/70 hover:text-white'
-              }`}
+                }`}
             >
               Pay Per Lead
             </button>
@@ -949,9 +1046,8 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               return (
                 <div
                   key={index}
-                  className={`bg-white rounded-xl border transition-colors ${
-                    isOpen ? 'border-[#B8834A]' : 'border-[#E4DCC9]'
-                  }`}
+                  className={`bg-white rounded-xl border transition-colors ${isOpen ? 'border-[#B8834A]' : 'border-[#E4DCC9]'
+                    }`}
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : index)}
@@ -959,9 +1055,8 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   >
                     <span>{item.q}</span>
                     <span
-                      className={`text-[#B8834A] text-xl transition-transform ${
-                        isOpen ? 'rotate-45' : ''
-                      }`}
+                      className={`text-[#B8834A] text-xl transition-transform ${isOpen ? 'rotate-45' : ''
+                        }`}
                     >
                       +
                     </span>
