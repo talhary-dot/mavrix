@@ -1,0 +1,21 @@
+# Mavrix Realty
+
+> Mavrix Realty connects licensed real estate agents with 100% verified, phone-screened buyer and seller prospects through live three-way calls, Pay Per Lead pricing, and monthly concierge plans.
+
+## Overview
+
+Mavrix Realty provides inbound lead generation and ISA qualifying services for real estate brokerages and agents across the United States. Every prospect is screened for intent, timeframe, and financing readiness before being connected to an agent.
+
+## Core Pages
+
+- [Home](https://mavrix-zeta.vercel.app/): Overview of verified real estate leads, live call verification, and pricing models.
+- [How It Works](https://mavrix-zeta.vercel.app/how-it-works): Detailed five-step process from prospect qualification to confirmed delivery.
+- [Services](https://mavrix-zeta.vercel.app/services): Pay Per Lead, Pay At Closing, and monthly concierge services for producing agents.
+- [Pricing](https://mavrix-zeta.vercel.app/pricing): Transparent pricing tiers (Starter, Professional, Enterprise) and per-lead rates.
+- [Contact Us](https://mavrix-zeta.vercel.app/contact-us): Brokerage inquiry form, territory availability, and agent support.
+
+## Policies & Compliance
+
+- [Privacy Policy](https://mavrix-zeta.vercel.app/privacy-policy): Privacy practices, consumer rights, and 10DLC SMS compliance guidelines.
+- [Terms of Use](https://mavrix-zeta.vercel.app/terms-of-use): Terms governing use of the lead platform and website.
+- [Communications Policy](https://mavrix-zeta.vercel.app/communications-policy): TCPA, telephone, and email communication standards.

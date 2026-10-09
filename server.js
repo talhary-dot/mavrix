@@ -74,6 +74,39 @@ async function createServer() {
     res.status(404).end();
   });
 
+  app.get('/llms.txt', (req, res) => {
+    const candidates = [
+      path.resolve(__dirname, 'dist/client/llms.txt'),
+      path.resolve(__dirname, 'public/llms.txt'),
+    ];
+    for (const p of candidates) {
+      if (fs.existsSync(p)) {
+        res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        return res.sendFile(p);
+      }
+    }
+    res.status(404).end();
+  });
+
+  app.get(['/ai-catalog.json', '/.well-known/ai-catalog.json', '/.well-known/ard.json'], (req, res) => {
+    const relativePath = req.path.replace(/^\//, '');
+    const candidates = [
+      path.resolve(__dirname, 'dist/client', relativePath),
+      path.resolve(__dirname, 'public', relativePath),
+      path.resolve(__dirname, 'dist/client/ai-catalog.json'),
+      path.resolve(__dirname, 'public/ai-catalog.json'),
+    ];
+    for (const p of candidates) {
+      if (fs.existsSync(p)) {
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        return res.sendFile(p);
+      }
+    }
+    res.status(404).end();
+  });
+
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
 

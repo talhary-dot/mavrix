@@ -1,0 +1,23 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Mavrix Realty",
+    "documentationUrl": "https://mavrix-zeta.vercel.app/services"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:mavrix-zeta.vercel.app:web:services",
+      "displayName": "Mavrix Realty Lead Generation Services",
+      "type": "text/html",
+      "url": "https://mavrix-zeta.vercel.app/services",
+      "description": "Verified real estate buyer and seller lead services, live transfer solutions, and monthly concierge plans."
+    },
+    {
+      "identifier": "urn:air:mavrix-zeta.vercel.app:docs:llmstxt",
+      "displayName": "Mavrix Realty LLM Documentation",
+      "type": "text/markdown",
+      "url": "https://mavrix-zeta.vercel.app/llms.txt",
+      "description": "Machine-readable overview and route map for AI agents and language models."
+    }
+  ]
+}
