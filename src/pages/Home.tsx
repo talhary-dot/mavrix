@@ -110,10 +110,11 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Mouse drag-to-scroll state
+  // Pointer drag-to-scroll state
   const [isDragging, setIsDragging] = useState(false);
-  const [dragStartX, setDragStartX] = useState(0);
-  const [dragScrollLeft, setDragScrollLeft] = useState(0);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const hasDragged = useRef(false);
 
   const checkScrollButtons = () => {
     if (sliderRef.current) {
@@ -133,15 +134,29 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
 
     // Convert mouse wheel vertical scroll to horizontal scroll when hovering over the slider
     const handleWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        const { scrollLeft, scrollWidth, clientWidth } = el;
-        const atStart = scrollLeft <= 0 && e.deltaY < 0;
-        const atEnd = scrollLeft >= scrollWidth - clientWidth - 2 && e.deltaY > 0;
-        if (!atStart && !atEnd) {
-          e.preventDefault();
-          el.scrollLeft += e.deltaY * 1.2;
-        }
+      // If horizontal trackpad/wheel, let browser handle natively
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        return;
       }
+
+      const { scrollLeft, scrollWidth, clientWidth } = el;
+      const maxScroll = scrollWidth - clientWidth;
+
+      // If slider does not overflow horizontally, allow normal page scroll
+      if (maxScroll <= 5) return;
+
+      const scrollingDown = e.deltaY > 0;
+      const scrollingUp = e.deltaY < 0;
+
+      // If reached start and scrolling up, pass through to page vertical scroll
+      if (scrollingUp && scrollLeft <= 2) return;
+
+      // If reached end and scrolling down, pass through to page vertical scroll
+      if (scrollingDown && scrollLeft >= maxScroll - 4) return;
+
+      // Convert vertical wheel to horizontal slider scrolling
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
     };
 
     el.addEventListener('wheel', handleWheel, { passive: false });
@@ -164,27 +179,51 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
     }
   };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!sliderRef.current) return;
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    const el = sliderRef.current;
+    if (!el) return;
+
     setIsDragging(true);
-    setDragStartX(e.pageX - sliderRef.current.offsetLeft);
-    setDragScrollLeft(sliderRef.current.scrollLeft);
+    hasDragged.current = false;
+    dragStartX.current = e.clientX;
+    dragScrollLeft.current = el.scrollLeft;
+    try {
+      el.setPointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
   };
 
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging || !sliderRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - dragStartX) * 1.4;
-    sliderRef.current.scrollLeft = dragScrollLeft - walk;
+    const dx = e.clientX - dragStartX.current;
+    if (Math.abs(dx) > 6) {
+      hasDragged.current = true;
+    }
+    sliderRef.current.scrollLeft = dragScrollLeft.current - dx;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging && sliderRef.current) {
+      setIsDragging(false);
+      try {
+        sliderRef.current.releasePointerCapture(e.pointerId);
+      } catch {
+        // ignore
+      }
+    }
+  };
+
+  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging && sliderRef.current) {
+      setIsDragging(false);
+      try {
+        sliderRef.current.releasePointerCapture(e.pointerId);
+      } catch {
+        // ignore
+      }
+    }
   };
 
   // Pricing pane toggle
@@ -408,12 +447,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
 
           <div
             ref={sliderRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            className={`flex gap-5 overflow-x-auto no-scrollbar scroll-smooth py-3 px-1 select-none cursor-grab active:cursor-grabbing ${
-              isDragging ? 'cursor-grabbing select-none scroll-auto' : ''
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerCancel}
+            className={`flex gap-5 overflow-x-auto no-scrollbar py-3 px-1 select-none touch-pan-y cursor-grab active:cursor-grabbing ${
+              isDragging ? 'cursor-grabbing select-none' : ''
             }`}
           >
             {PROPERTY_CARDS.map((card, i) => (
@@ -449,7 +488,10 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                 We're onboarding new zip codes every week — tell us where you work and we'll check territory availability.
               </p>
               <button
-                onClick={() => onOpenModal('Check Zip Code')}
+                onClick={() => {
+                  if (hasDragged.current) return;
+                  onOpenModal('Check Zip Code');
+                }}
                 className="btn btn-primary self-start"
               >
                 Check my zip code →
