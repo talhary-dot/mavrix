@@ -57,6 +57,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, planName, initialP
         className="relative bg-white rounded-2xl w-full max-w-[500px] max-h-[90vh] overflow-y-auto p-7 md:p-9 shadow-2xl animate-modal"
         role="dialog"
         aria-modal="true"
+        aria-labelledby="lead-modal-title"
       >
         {/* Close Button */}
         <button
@@ -76,7 +77,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, planName, initialP
                 <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-[#0D1B3D] mb-2">Request Received!</h3>
+            <h2 id="lead-modal-title" className="text-2xl font-bold text-[#0D1B3D] mb-2">Request Received!</h2>
             <p className="text-[14.5px] text-[#5B5A54] max-w-sm mx-auto mb-6">
               Thank you for requesting information for <strong>{planName}</strong>. Our team will review your market territory and contact you within one business day.
             </p>
@@ -90,13 +91,13 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, planName, initialP
         ) : (
           <>
             {/* Plan Chip */}
-            <div className="inline-flex items-center gap-1.5 bg-[#F2E9D8] border border-[#E4DCC9] rounded-full px-3.5 py-1.5 text-[11.5px] tracking-wider uppercase font-semibold text-[#B8834A] mb-3.5">
+            <div className="inline-flex items-center gap-1.5 bg-[#F2E9D8] border border-[#E4DCC9] rounded-full px-3.5 py-1.5 text-[11.5px] tracking-wider uppercase font-semibold text-[#8C5823] mb-3.5">
               <span>★</span> {planName || 'PAY PER LEAD'}
             </div>
 
-            <h3 className="text-[23px] font-bold text-[#0D1B3D] mb-2 pr-6">
+            <h2 id="lead-modal-title" className="text-[23px] font-bold text-[#0D1B3D] mb-2 pr-6">
               Let's get you set up
-            </h3>
+            </h2>
             <p className="text-[13.5px] text-[#5B5A54] mb-6">
               Tell us a bit about your business and we'll follow up within one business day.
             </p>

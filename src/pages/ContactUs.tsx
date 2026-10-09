@@ -73,16 +73,16 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
               {/* Contact Cards */}
               <div className="space-y-4">
                 <div className="p-6 bg-white rounded-2xl border border-[#E4DCC9] shadow-sm flex items-start gap-4 transition-all hover:border-[#D4A574]">
-                  <div className="w-12 h-12 rounded-xl bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-[#B8834A] shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-[#8C5823] shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-[#B8834A] uppercase tracking-wider block mb-1">
+                    <span className="text-xs font-semibold text-[#8C5823] uppercase tracking-wider block mb-1">
                       Direct Phone
                     </span>
                     <a
                       href="tel:9062104947"
-                      className="text-lg font-bold text-[#0D1B3D] hover:text-[#B8834A] transition-colors"
+                      className="text-lg font-bold text-[#0D1B3D] hover:text-[#8C5823] transition-colors"
                     >
                       (906) 210-4947
                     </a>
@@ -91,16 +91,16 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                 </div>
 
                 <div className="p-6 bg-white rounded-2xl border border-[#E4DCC9] shadow-sm flex items-start gap-4 transition-all hover:border-[#D4A574]">
-                  <div className="w-12 h-12 rounded-xl bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-[#B8834A] shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-[#8C5823] shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-[#B8834A] uppercase tracking-wider block mb-1">
+                    <span className="text-xs font-semibold text-[#8C5823] uppercase tracking-wider block mb-1">
                       Email Desk
                     </span>
                     <a
                       href="mailto:contact@mavrixrealty.com"
-                      className="text-lg font-bold text-[#0D1B3D] hover:text-[#B8834A] transition-colors"
+                      className="text-lg font-bold text-[#0D1B3D] hover:text-[#8C5823] transition-colors"
                     >
                       contact@mavrixrealty.com
                     </a>
@@ -109,11 +109,11 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                 </div>
 
                 <div className="p-6 bg-white rounded-2xl border border-[#E4DCC9] shadow-sm flex items-start gap-4 transition-all hover:border-[#D4A574]">
-                  <div className="w-12 h-12 rounded-xl bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-[#B8834A] shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-[#8C5823] shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-[#B8834A] uppercase tracking-wider block mb-1">
+                    <span className="text-xs font-semibold text-[#8C5823] uppercase tracking-wider block mb-1">
                       Headquarters
                     </span>
                     <p className="text-base font-bold text-[#0D1B3D]">
@@ -130,7 +130,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
               {/* Response Pledge Box */}
               <div className="p-6 bg-[#F2E9D8] rounded-2xl border border-[#E4DCC9]">
                 <div className="flex items-center gap-3 mb-2 text-[#0D1B3D] font-bold">
-                  <Clock className="w-5 h-5 text-[#B8834A]" />
+                  <Clock className="w-5 h-5 text-[#8C5823]" />
                   <span>Agent Priority Support</span>
                 </div>
                 <p className="text-sm text-[#5B5A54] leading-relaxed">
@@ -143,12 +143,12 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
             <div className="lg:col-span-7">
               <div className="bg-white rounded-3xl p-8 md:p-10 border border-[#E4DCC9] shadow-xl relative overflow-hidden">
                 <div className="mb-8">
-                  <span className="text-xs font-bold text-[#B8834A] uppercase tracking-wider block mb-2">
+                  <span className="text-xs font-bold text-[#8C5823] uppercase tracking-wider block mb-2">
                     Send a Message
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#0D1B3D]">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#0D1B3D]">
                     Start a Conversation
-                  </h3>
+                  </h2>
                   <p className="text-[#5B5A54] text-sm mt-1">
                     Fill out the form below and an agent specialist will review your service territory.
                   </p>
@@ -156,12 +156,12 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
 
                 {submitted ? (
                   <div className="py-12 px-6 text-center bg-[#FAF6EF] rounded-2xl border border-[#E4DCC9]">
-                    <div className="w-16 h-16 bg-[#D4A574]/20 text-[#B8834A] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-[#D4A574]/20 text-[#8C5823] rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h4 className="text-2xl font-bold text-[#0D1B3D] mb-2">
+                    <h3 className="text-2xl font-bold text-[#0D1B3D] mb-2">
                       Message Received!
-                    </h4>
+                    </h3>
                     <p className="text-[#5B5A54] max-w-md mx-auto mb-6 text-sm">
                       Thank you, <strong>{formData.firstName}</strong>. We have routed your inquiry to our brokerage accounts team. We will contact you at <strong>{formData.email}</strong> shortly.
                     </p>
@@ -196,7 +196,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xs font-semibold text-[#0D1B3D] uppercase tracking-wider mb-2">
-                          First Name <span className="text-[#B8834A]">*</span>
+                          First Name <span className="text-[#8C5823]">*</span>
                         </label>
                         <input
                           type="text"
@@ -209,7 +209,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-[#0D1B3D] uppercase tracking-wider mb-2">
-                          Last Name <span className="text-[#B8834A]">*</span>
+                          Last Name <span className="text-[#8C5823]">*</span>
                         </label>
                         <input
                           type="text"
@@ -226,7 +226,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xs font-semibold text-[#0D1B3D] uppercase tracking-wider mb-2">
-                          Work Email <span className="text-[#B8834A]">*</span>
+                          Work Email <span className="text-[#8C5823]">*</span>
                         </label>
                         <input
                           type="email"
@@ -239,7 +239,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-[#0D1B3D] uppercase tracking-wider mb-2">
-                          Phone Number <span className="text-[#B8834A]">*</span>
+                          Phone Number <span className="text-[#8C5823]">*</span>
                         </label>
                         <input
                           type="tel"
@@ -273,14 +273,14 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                           type="checkbox"
                           checked={formData.termsAgreed}
                           onChange={(e) => setFormData({ ...formData, termsAgreed: e.target.checked })}
-                          className="mt-0.5 w-4 h-4 rounded text-[#B8834A] border-[#E4DCC9] focus:ring-[#D4A574]"
+                          className="mt-0.5 w-4 h-4 rounded text-[#8C5823] border-[#E4DCC9] focus:ring-[#D4A574]"
                         />
                         <span>
                           I agree to the{' '}
                           <button
                             type="button"
                             onClick={() => navigate('/terms-of-use')}
-                            className="text-[#B8834A] font-semibold underline hover:text-[#0D1B3D]"
+                            className="text-[#8C5823] font-semibold underline hover:text-[#0D1B3D]"
                           >
                             Terms &amp; Conditions
                           </button>{' '}
@@ -288,7 +288,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                           <button
                             type="button"
                             onClick={() => navigate('/privacy-policy')}
-                            className="text-[#B8834A] font-semibold underline hover:text-[#0D1B3D]"
+                            className="text-[#8C5823] font-semibold underline hover:text-[#0D1B3D]"
                           >
                             Privacy Policy
                           </button>
@@ -304,14 +304,14 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                           type="checkbox"
                           checked={formData.consentAgreed}
                           onChange={(e) => setFormData({ ...formData, consentAgreed: e.target.checked })}
-                          className="mt-0.5 w-4 h-4 rounded text-[#B8834A] border-[#E4DCC9] focus:ring-[#D4A574]"
+                          className="mt-0.5 w-4 h-4 rounded text-[#8C5823] border-[#E4DCC9] focus:ring-[#D4A574]"
                         />
                         <span>
                           I consent to receive service-related calls or messages about this request. Marketing consent is optional and is not a condition of purchasing a service. Messaging frequency, opt-out instructions, and provider details will be disclosed before messaging is enabled. See our{' '}
                           <button
                             type="button"
                             onClick={() => navigate('/terms-of-use')}
-                            className="text-[#B8834A] font-semibold underline hover:text-[#0D1B3D]"
+                            className="text-[#8C5823] font-semibold underline hover:text-[#0D1B3D]"
                           >
                             Terms &amp; Conditions
                           </button>{' '}
@@ -319,7 +319,7 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
                           <button
                             type="button"
                             onClick={() => navigate('/privacy-policy')}
-                            className="text-[#B8834A] font-semibold underline hover:text-[#0D1B3D]"
+                            className="text-[#8C5823] font-semibold underline hover:text-[#0D1B3D]"
                           >
                             Privacy Policy
                           </button>
@@ -349,9 +349,9 @@ export const ContactUs: React.FC<ContactUsProps> = ({ navigate, onOpenModal }) =
       {/* Alternative CTA Section */}
       <section className="bg-[#0D1B3D] text-white py-16 border-t border-white/10">
         <div className="max-w-[1180px] mx-auto px-6 md:px-8 text-center">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Prefer to explore our plans right away?
-          </h3>
+          </h2>
           <p className="text-white/70 max-w-xl mx-auto mb-8 text-sm md:text-base">
             Review verified lead pricing by county, pay-at-closing options, and monthly concierge tiers with complete transparency.
           </p>

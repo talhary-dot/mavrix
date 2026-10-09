@@ -293,7 +293,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
           {/* Hero Verified Call Card Mockup */}
           <div className="lg:col-span-5">
             <div className="bg-white rounded-2xl p-6 md:p-7 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.55)] border border-[#14285A]/10 max-w-md mx-auto">
-              <div className="text-[11px] font-bold tracking-widest uppercase text-[#B8834A] flex items-center gap-2 mb-4">
+              <div className="text-[11px] font-bold tracking-widest uppercase text-[#8C5823] flex items-center gap-2 mb-4">
                 <span className="pulse"></span> Verified Lead Incoming
               </div>
               <div className="divide-y divide-[#F0ECE1]">
@@ -302,7 +302,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                     MR
                   </div>
                   <div>
-                    <h4 className="font-bold text-[14.5px] text-[#0D1B3D]">Michael & Rebecca Roberts</h4>
+                    <div className="font-bold text-[14.5px] text-[#0D1B3D]">Michael & Rebecca Roberts</div>
                     <p className="text-[12.5px] text-[#5B5A54]">Pre-approved buyer • 4 bed, 3 bath target</p>
                   </div>
                 </div>
@@ -311,7 +311,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                     TC
                   </div>
                   <div>
-                    <h4 className="font-bold text-[14.5px] text-[#0D1B3D]">Three-Way Call Verified</h4>
+                    <div className="font-bold text-[14.5px] text-[#0D1B3D]">Three-Way Call Verified</div>
                     <p className="text-[12.5px] text-[#5B5A54]">Mavrix lead coordinator screened intent</p>
                   </div>
                 </div>
@@ -325,12 +325,12 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               </div>
 
               <div className="mt-4 flex items-center justify-between text-xs text-[#5B5A54] pt-2 border-t border-[#F0ECE1]">
-                <span className="flex items-center gap-1.5 text-emerald-600 font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Recording Ready
+                <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-600"></span> Recording Ready
                 </span>
                 <button
                   onClick={() => onOpenModal('Verified Sample')}
-                  className="text-[#B8834A] font-semibold hover:underline"
+                  className="text-[#8C5823] font-semibold hover:underline"
                 >
                   Listen Demo →
                 </button>
@@ -366,7 +366,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                 <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#14285A" strokeWidth="1.8" />
               </svg>
             </div>
-            <h3 className="text-white text-xl font-bold">I'm a real estate agent</h3>
+            <h2 className="text-white text-xl font-bold">I'm a real estate agent</h2>
             <p className="text-white/70 text-[14.5px]">
               Compare Pay Per Lead and monthly plans, see exactly what's included, and start receiving verified prospects this week.
             </p>
@@ -388,7 +388,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                 <path d="M6 10V20H18V10" stroke="#14285A" strokeWidth="1.8" />
               </svg>
             </div>
-            <h3 className="text-white text-xl font-bold">I'm buying or selling a home</h3>
+            <h2 className="text-white text-xl font-bold">I'm buying or selling a home</h2>
             <p className="text-white/70 text-[14.5px]">
               Tell us what you're looking for, and we'll connect you with a licensed, vetted agent in your area — no cost to you.
             </p>
@@ -474,18 +474,18 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   />
                 </div>
                 <div className="p-5">
-                  <h4 className="text-base font-bold text-[#0D1B3D] mb-1">{card.title}</h4>
+                  <h3 className="text-base font-bold text-[#0D1B3D] mb-1">{card.title}</h3>
                   <p className="text-[13px] text-[#5B5A54] mb-3.5">{card.desc}</p>
                   <div className="flex items-center justify-between pt-3 border-t border-[#E4DCC9] text-[12.5px] text-[#5B5A54]">
                     <span>{card.type}</span>
-                    <b className="text-[#B8834A] font-semibold">{card.price}</b>
+                    <b className="text-[#8C5823] font-bold">{card.price}</b>
                   </div>
                 </div>
               </div>
             ))}
 
             <div className="prop-card-item w-[280px] sm:w-[320px] shrink-0 bg-gradient-to-br from-[#0D1B3D] to-[#14285A] rounded-2xl p-7 flex flex-col justify-center text-white select-none">
-              <h4 className="text-xl font-bold mb-2">Don't see your market?</h4>
+              <h3 className="text-xl font-bold mb-2">Don't see your market?</h3>
               <p className="text-white/70 text-[13.5px] mb-6">
                 We're onboarding new zip codes every week — tell us where you work and we'll check territory availability.
               </p>
@@ -529,7 +529,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                     />
                   </svg>
                 </div>
-                <span className="text-[11.5px] font-bold text-[#B8834A] tracking-wider">MODEL 01</span>
+                <span className="text-[11.5px] font-bold text-[#8C5823] tracking-wider">MODEL 01</span>
               </div>
               <h3 className="text-xl font-bold mb-2 text-[#0D1B3D]">Pay Per Lead</h3>
               <p className="text-[14px] text-[#5B5A54] mb-5 min-h-[60px]">
@@ -540,7 +540,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               </div>
               <button
                 onClick={() => onOpenModal('Pay Per Lead')}
-                className="inline-flex items-center gap-1.5 mt-4 text-[13.5px] font-semibold text-[#B8834A] hover:gap-2.5 transition-all bg-transparent border-0 cursor-pointer"
+                className="inline-flex items-center gap-1.5 mt-4 text-[13.5px] font-semibold text-[#8C5823] hover:gap-2.5 transition-all bg-transparent border-0 cursor-pointer"
               >
                 See full pricing →
               </button>
@@ -587,7 +587,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                     <path d="M4 12l8 4.5 8-4.5M4 16l8 4.5 8-4.5" stroke="#B8834A" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" />
                   </svg>
                 </div>
-                <span className="text-[11.5px] font-bold text-[#B8834A] tracking-wider">MODEL 03</span>
+                <span className="text-[11.5px] font-bold text-[#8C5823] tracking-wider">MODEL 03</span>
               </div>
               <h3 className="text-xl font-bold mb-2 text-[#0D1B3D]">Combine Both</h3>
               <p className="text-[14px] text-[#5B5A54] mb-5 min-h-[60px]">
@@ -598,7 +598,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               </div>
               <button
                 onClick={() => onOpenModal('Custom Combination')}
-                className="inline-flex items-center gap-1.5 mt-4 text-[13.5px] font-semibold text-[#B8834A] hover:gap-2.5 transition-all bg-transparent border-0 cursor-pointer"
+                className="inline-flex items-center gap-1.5 mt-4 text-[13.5px] font-semibold text-[#8C5823] hover:gap-2.5 transition-all bg-transparent border-0 cursor-pointer"
               >
                 See full pricing →
               </button>
@@ -652,11 +652,11 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                 key={idx}
                 className="bg-white/[0.045] border border-white/10 rounded-2xl p-6 relative hover:-translate-y-1 hover:border-[#EED3B0]/50 hover:bg-white/[0.08] transition-all duration-300"
               >
-                <span className="absolute top-5 right-5 text-xs text-white/30 font-bold">{step.num}</span>
+                <span className="absolute top-5 right-5 text-xs text-white/70 font-bold">{step.num}</span>
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#EED3B0]/20 to-[#B8834A]/30 border border-[#EED3B0]/30 flex items-center justify-center mb-5 text-[#EED3B0] font-bold text-sm">
                   {idx + 1}
                 </div>
-                <h4 className="text-[15.5px] font-bold text-white mb-2">{step.title}</h4>
+                <h3 className="text-[15.5px] font-bold text-white mb-2">{step.title}</h3>
                 <p className="text-[13px] text-white/60 leading-relaxed">{step.desc}</p>
               </div>
             ))}
@@ -677,51 +677,51 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <div className="bg-white border border-[#E4DCC9] rounded-2xl p-6">
-              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#B8834A] flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#8C5823] flex items-center justify-center mb-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
                   <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="text-base font-bold text-[#0D1B3D] mb-1.5">You hear the prospect first</h4>
+              <h3 className="text-base font-bold text-[#0D1B3D] mb-1.5">You hear the prospect first</h3>
               <p className="text-[13px] text-[#5B5A54]">
                 Every Pay Per Lead introduction happens on a live call or a recording you review — never a blind hand-off.
               </p>
             </div>
 
             <div className="bg-white border border-[#E4DCC9] rounded-2xl p-6">
-              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#B8834A] flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#8C5823] flex items-center justify-center mb-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <path d="M6 4h9l3 3v13H6z" stroke="currentColor" strokeWidth="1.8" />
                   <path d="M9 11h6M9 15h6" stroke="currentColor" strokeWidth="1.8" />
                 </svg>
               </div>
-              <h4 className="text-base font-bold text-[#0D1B3D] mb-1.5">Agreements in writing</h4>
+              <h3 className="text-base font-bold text-[#0D1B3D] mb-1.5">Agreements in writing</h3>
               <p className="text-[13px] text-[#5B5A54]">
                 Terms — including refund guarantees — are documented between you and Mavrix Realty, never a verbal promise.
               </p>
             </div>
 
             <div className="bg-white border border-[#E4DCC9] rounded-2xl p-6">
-              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#B8834A] flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#8C5823] flex items-center justify-center mb-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
                   <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </div>
-              <h4 className="text-base font-bold text-[#0D1B3D] mb-1.5">Lead Guarantee</h4>
+              <h3 className="text-base font-bold text-[#0D1B3D] mb-1.5">Lead Guarantee</h3>
               <p className="text-[13px] text-[#5B5A54]">
                 If we can't deliver, or you receive unusable prospects within the period, you're covered by our written guarantee.
               </p>
             </div>
 
             <div className="bg-white border border-[#E4DCC9] rounded-2xl p-6">
-              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#B8834A] flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded-lg bg-[#FAF6EF] text-[#8C5823] flex items-center justify-center mb-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <path d="M4 12h4l2-6 4 12 2-6h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="text-base font-bold text-[#0D1B3D] mb-1.5">No lock-in contracts</h4>
+              <h3 className="text-base font-bold text-[#0D1B3D] mb-1.5">No lock-in contracts</h3>
               <p className="text-[13px] text-[#5B5A54]">
                 Pay Per Lead has zero commitment. Monthly plans run month to month — cancel or switch tiers any time.
               </p>
@@ -760,11 +760,11 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
 
             <div className="flex flex-col gap-5 mt-6">
               <div className="flex gap-4">
-                <div className="w-8 h-8 rounded-lg bg-[#F2E9D8] text-[#B8834A] font-bold text-sm flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] text-[#8C5823] font-bold text-sm flex items-center justify-center shrink-0">
                   1
                 </div>
                 <div>
-                  <h4 className="text-[15px] font-bold text-[#0D1B3D]">Intent is confirmed on tape</h4>
+                  <h3 className="text-[15px] font-bold text-[#0D1B3D]">Intent is confirmed on tape</h3>
                   <p className="text-[13px] text-[#5B5A54]">
                     You're never guessing whether a lead is real — you hear it for yourself.
                   </p>
@@ -772,11 +772,11 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               </div>
 
               <div className="flex gap-4">
-                <div className="w-8 h-8 rounded-lg bg-[#F2E9D8] text-[#B8834A] font-bold text-sm flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] text-[#8C5823] font-bold text-sm flex items-center justify-center shrink-0">
                   2
                 </div>
                 <div>
-                  <h4 className="text-[15px] font-bold text-[#0D1B3D]">Territory-aware routing</h4>
+                  <h3 className="text-[15px] font-bold text-[#0D1B3D]">Territory-aware routing</h3>
                   <p className="text-[13px] text-[#5B5A54]">
                     Monthly plans cap how many agents share a zip code, so you're not racing five other calls.
                   </p>
@@ -784,11 +784,11 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
               </div>
 
               <div className="flex gap-4">
-                <div className="w-8 h-8 rounded-lg bg-[#F2E9D8] text-[#B8834A] font-bold text-sm flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] text-[#8C5823] font-bold text-sm flex items-center justify-center shrink-0">
                   3
                 </div>
                 <div>
-                  <h4 className="text-[15px] font-bold text-[#0D1B3D]">30-Day Lead Guarantee</h4>
+                  <h3 className="text-[15px] font-bold text-[#0D1B3D]">30-Day Lead Guarantee</h3>
                   <p className="text-[13px] text-[#5B5A54]">
                     If you face any issue with a lead within 30 days, we’ll provide you with another lead at no additional cost.
                   </p>
@@ -842,7 +842,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   <div className="text-4xl font-bold text-white mb-0.5">
                     $99 <span className="text-sm font-normal text-white/60">/ month</span>
                   </div>
-                  <div className="text-[12px] text-white/50 mb-3">billed monthly</div>
+                  <div className="text-[12px] text-white/70 mb-3">billed monthly</div>
                   <div className="text-[13px] text-white/70 mb-4">Perfect for agents getting started</div>
                   <div className="inline-block bg-[#EED3B0]/15 border border-[#EED3B0]/30 rounded-full px-3 py-1 text-xs text-[#EED3B0] mb-5">
                     20% Referral Fee
@@ -883,7 +883,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   <div className="text-4xl font-bold text-white mb-0.5">
                     $269 <span className="text-sm font-normal text-white/60">/ month</span>
                   </div>
-                  <div className="text-[12px] text-white/50 mb-3">billed monthly</div>
+                  <div className="text-[12px] text-white/70 mb-3">billed monthly</div>
                   <div className="text-[13px] text-white/70 mb-4">Ideal for busy agents & small teams</div>
                   <div className="inline-block bg-[#EED3B0]/15 border border-[#EED3B0]/30 rounded-full px-3 py-1 text-xs text-[#EED3B0] mb-5">
                     10% Referral Fee
@@ -921,7 +921,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   <div className="text-4xl font-bold text-white mb-0.5">
                     $399 <span className="text-sm font-normal text-white/60">/ month</span>
                   </div>
-                  <div className="text-[12px] text-white/50 mb-3">billed monthly</div>
+                  <div className="text-[12px] text-white/70 mb-3">billed monthly</div>
                   <div className="text-[13px] text-white/70 mb-4">Designed for brokerages & teams 5+</div>
                   <div className="inline-block bg-[#EED3B0]/15 border border-[#EED3B0]/30 rounded-full px-3 py-1 text-xs text-[#EED3B0] mb-5">
                     5% Referral Fee
@@ -964,7 +964,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                 <div className="text-4xl sm:text-5xl font-bold text-white mb-2">
                   $100–$200
                 </div>
-                <div className="text-xs text-white/50 mb-4">
+                <div className="text-xs text-white/70 mb-4">
                   depending on zip code & property type
                 </div>
                 <p className="text-[14px] text-white/70 max-w-sm mb-6 leading-relaxed">
@@ -1001,7 +1001,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
             </div>
           )}
 
-          <div className="text-xs text-white/50 mt-8 flex items-start gap-2">
+          <div className="text-xs text-white/70 mt-8 flex items-start gap-2">
             <span>ⓘ</span>
             <span>
               Pay Per Lead prices vary by zip code and property type. Monthly plan volumes are targets, backed by the guarantee — territory exclusivity is subject to availability in your market.
@@ -1021,7 +1021,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white border border-[#E4DCC9] rounded-2xl p-7 flex flex-col justify-between">
               <div>
-                <div className="text-[#B8834A] text-sm tracking-widest mb-3">★★★★★</div>
+                <div className="text-[#8C5823] text-sm tracking-widest mb-3">★★★★★</div>
                 <p className="text-[14.5px] text-[#1C1B18] leading-relaxed mb-6">
                   "I could actually hear the prospect say they wanted to sell before I paid a dollar. That alone changed how I budget for leads."
                 </p>
@@ -1031,7 +1031,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   SM
                 </div>
                 <div>
-                  <h5 className="text-[13.5px] font-bold text-[#0D1B3D]">Sarah M.</h5>
+                  <div className="text-[13.5px] font-bold text-[#0D1B3D]">Sarah M.</div>
                   <span className="text-[12px] text-[#5B5A54]">Broker, Austin TX</span>
                 </div>
               </div>
@@ -1039,7 +1039,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
 
             <div className="bg-white border border-[#E4DCC9] rounded-2xl p-7 flex flex-col justify-between">
               <div>
-                <div className="text-[#B8834A] text-sm tracking-widest mb-3">★★★★★</div>
+                <div className="text-[#8C5823] text-sm tracking-widest mb-3">★★★★★</div>
                 <p className="text-[14.5px] text-[#1C1B18] leading-relaxed mb-6">
                   "Moved from Pay Per Lead to Standard once I saw the close rate. Having a flat monthly number made forecasting my quarter simple."
                 </p>
@@ -1049,7 +1049,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   DK
                 </div>
                 <div>
-                  <h5 className="text-[13.5px] font-bold text-[#0D1B3D]">David K.</h5>
+                  <div className="text-[13.5px] font-bold text-[#0D1B3D]">David K.</div>
                   <span className="text-[12px] text-[#5B5A54]">Agent, Tampa FL</span>
                 </div>
               </div>
@@ -1057,7 +1057,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
 
             <div className="bg-white border border-[#E4DCC9] rounded-2xl p-7 flex flex-col justify-between">
               <div>
-                <div className="text-[#B8834A] text-sm tracking-widest mb-3">★★★★★</div>
+                <div className="text-[#8C5823] text-sm tracking-widest mb-3">★★★★★</div>
                 <p className="text-[14.5px] text-[#1C1B18] leading-relaxed mb-6">
                   "The written agreement on the refund guarantee is what got me to try it. No other lead source I've used puts that on paper."
                 </p>
@@ -1067,7 +1067,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   RL
                 </div>
                 <div>
-                  <h5 className="text-[13.5px] font-bold text-[#0D1B3D]">Renee L.</h5>
+                  <div className="text-[13.5px] font-bold text-[#0D1B3D]">Renee L.</div>
                   <span className="text-[12px] text-[#5B5A54]">Team Lead, Columbus OH</span>
                 </div>
               </div>
@@ -1099,7 +1099,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                   >
                     <span>{item.q}</span>
                     <span
-                      className={`text-[#B8834A] text-xl transition-transform ${isOpen ? 'rotate-45' : ''
+                      className={`text-[#8C5823] text-xl transition-transform ${isOpen ? 'rotate-45' : ''
                         }`}
                     >
                       +

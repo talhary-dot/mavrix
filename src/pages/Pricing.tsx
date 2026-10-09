@@ -49,12 +49,12 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenModal, navigate }) => {
             </div>
             <div className="md:col-span-5 flex justify-center">
               <div className="bg-[#F2E9D8] border border-[#E4DCC9] rounded-3xl p-8 text-center max-w-sm w-full">
-                <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center mx-auto mb-4 text-[#B8834A] text-2xl font-bold">
+                <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center mx-auto mb-4 text-[#8C5823] text-2xl font-bold">
                   $
                 </div>
-                <h4 className="text-lg font-bold text-[#0D1B3D] mb-1">
+                <div className="text-lg font-bold text-[#0D1B3D] mb-1">
                   Predictable ROI
-                </h4>
+                </div>
                 <p className="text-xs text-[#5B5A54] leading-relaxed">
                   Hear every lead before committing capital. Built by real estate professionals for real pipeline growth.
                 </p>
@@ -401,7 +401,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenModal, navigate }) => {
                     className="w-full px-6 py-4 flex items-center justify-between text-left font-bold text-[15px] text-[#0D1B3D] bg-transparent border-0 cursor-pointer"
                   >
                     <span>{item.q}</span>
-                    <span className={`text-[#B8834A] text-xl transition-transform ${isOpen ? 'rotate-45' : ''}`}>
+                    <span className={`text-[#8C5823] text-xl transition-transform ${isOpen ? 'rotate-45' : ''}`}>
                       +
                     </span>
                   </button>

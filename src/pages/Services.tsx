@@ -81,7 +81,7 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
                   />
                 </svg>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">Three-way live calls</h4>
+              <h3 className="text-lg font-bold text-white mb-2">Three-way live calls</h3>
               <p className="text-white/70 text-[14px] leading-relaxed">
                 We loop you in directly, connecting you with the prospect on a live conference call.
               </p>
@@ -94,7 +94,7 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
                   <path d="M9 12h6M9 16h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">Listen before you commit</h4>
+              <h3 className="text-lg font-bold text-white mb-2">Listen before you commit</h3>
               <p className="text-white/70 text-[14px] leading-relaxed">
                 Can't make the call? We send the recording so you can hear it before deciding.
               </p>
@@ -107,7 +107,7 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
                   <circle cx="12" cy="9.5" r="2.3" stroke="currentColor" strokeWidth="1.8" />
                 </svg>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">Priced by zip code</h4>
+              <h3 className="text-lg font-bold text-white mb-2">Priced by zip code</h3>
               <p className="text-white/70 text-[14px] leading-relaxed">
                 Lead pricing runs $100–$200, set by location, property type, and market demand.
               </p>
@@ -126,38 +126,38 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-[#FAF6EF] border border-[#14285A]/15 rounded-2xl p-7 hover:-translate-y-1 transition-transform">
-              <div className="w-11 h-11 rounded-xl bg-[#D4A574]/20 text-[#B8834A] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#D4A574]/20 text-[#8C5823] flex items-center justify-center mb-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <path d="M12 3l7 3v5.5c0 4.5-3 7.7-7 9.5-4-1.8-7-5-7-9.5V6l7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
                   <path d="M9 12l2 2 4-4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="text-lg font-bold text-[#0D1B3D] mb-2">30-day guarantee</h4>
+              <h3 className="text-lg font-bold text-[#0D1B3D] mb-2">30-day guarantee</h3>
               <p className="text-[#5B5A54] text-[14px] leading-relaxed">
                 Get replacement leads if we come up short, or if you receive unusable prospects.
               </p>
             </div>
 
             <div className="bg-[#FAF6EF] border border-[#14285A]/15 rounded-2xl p-7 hover:-translate-y-1 transition-transform">
-              <div className="w-11 h-11 rounded-xl bg-[#D4A574]/20 text-[#B8834A] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#D4A574]/20 text-[#8C5823] flex items-center justify-center mb-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <path d="M6 3h9l3 3v15H6z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
                   <path d="M9 12h6M9 16h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </div>
-              <h4 className="text-lg font-bold text-[#0D1B3D] mb-2">Everything in writing</h4>
+              <h3 className="text-lg font-bold text-[#0D1B3D] mb-2">Everything in writing</h3>
               <p className="text-[#5B5A54] text-[14px] leading-relaxed">
                 Every term between you and Mavrix Realty is documented, not just verbally promised.
               </p>
             </div>
 
             <div className="bg-[#FAF6EF] border border-[#14285A]/15 rounded-2xl p-7 hover:-translate-y-1 transition-transform">
-              <div className="w-11 h-11 rounded-xl bg-[#D4A574]/20 text-[#B8834A] flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-xl bg-[#D4A574]/20 text-[#8C5823] flex items-center justify-center mb-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                   <path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </div>
-              <h4 className="text-lg font-bold text-[#0D1B3D] mb-2">15–25% referral fee</h4>
+              <h3 className="text-lg font-bold text-[#0D1B3D] mb-2">15–25% referral fee</h3>
               <p className="text-[#5B5A54] text-[14px] leading-relaxed">
                 The fee is only due once a prospect closes — nothing changes hands before then.
               </p>
@@ -184,7 +184,7 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
                   <path d="M20 5.5c-2.5-1-5.5-1-8 0v14c2.5-1-5.5-1-8 0z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-white mb-1.5">Bookkeeping</h4>
+              <h3 className="font-bold text-base text-white mb-1.5">Bookkeeping</h3>
               <p className="text-xs sm:text-[13px] text-white/70">We keep your books tidy and up to date.</p>
             </div>
 
@@ -195,7 +195,7 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
                   <path d="M5 6l1.5 1.5L9 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-white mb-1.5">Lead management</h4>
+              <h3 className="font-bold text-base text-white mb-1.5">Lead management</h3>
               <p className="text-xs sm:text-[13px] text-white/70">Every lead gets tracked so nothing slips through the cracks.</p>
             </div>
 
@@ -207,7 +207,7 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
                   <path d="M9 14l1.5 1.5L14 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-white mb-1.5">Appointment setting</h4>
+              <h3 className="font-bold text-base text-white mb-1.5">Appointment setting</h3>
               <p className="text-xs sm:text-[13px] text-white/70">We fill your calendar by scheduling appointments on your behalf.</p>
             </div>
 
@@ -218,7 +218,7 @@ export const Services: React.FC<ServicesProps> = ({ onOpenModal, navigate }) => 
                   <path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-white mb-1.5">Cold calling</h4>
+              <h3 className="font-bold text-base text-white mb-1.5">Cold calling</h3>
               <p className="text-xs sm:text-[13px] text-white/70">We handle the cold outreach to keep new opportunities coming in.</p>
             </div>
           </div>

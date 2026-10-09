@@ -72,21 +72,21 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onOpenModal, naviga
           <a
             href="/how-it-works"
             onClick={(e) => handleLinkClick(e, '/how-it-works')}
-            className={`transition-opacity hover:opacity-100 ${currentPath === '/how-it-works' ? 'opacity-100 font-semibold text-[#B8834A]' : 'opacity-85'}`}
+            className={`transition-opacity hover:opacity-100 ${currentPath === '/how-it-works' ? 'opacity-100 font-semibold text-[#8C5823]' : 'opacity-85'}`}
           >
             How It Works
           </a>
           <a
             href="/services"
             onClick={(e) => handleLinkClick(e, '/services')}
-            className={`transition-opacity hover:opacity-100 ${currentPath === '/services' ? 'opacity-100 font-semibold text-[#B8834A]' : 'opacity-85'}`}
+            className={`transition-opacity hover:opacity-100 ${currentPath === '/services' ? 'opacity-100 font-semibold text-[#8C5823]' : 'opacity-85'}`}
           >
             Services
           </a>
           <a
             href="/pricing"
             onClick={(e) => handleLinkClick(e, '/pricing')}
-            className={`transition-opacity hover:opacity-100 ${currentPath === '/pricing' ? 'opacity-100 font-semibold text-[#B8834A]' : 'opacity-85'}`}
+            className={`transition-opacity hover:opacity-100 ${currentPath === '/pricing' ? 'opacity-100 font-semibold text-[#8C5823]' : 'opacity-85'}`}
           >
             Pricing
           </a>

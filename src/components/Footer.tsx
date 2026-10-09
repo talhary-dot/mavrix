@@ -61,9 +61,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
           {/* Product */}
           <div>
-            <h5 className="text-white text-[13.5px] font-semibold mb-4 uppercase tracking-wider">
+            <h3 className="text-white text-[13.5px] font-semibold mb-4 uppercase tracking-wider">
               Product
-            </h5>
+            </h3>
             <div className="flex flex-col gap-2.5 text-[13.5px]">
               <a
                 href="/how-it-works"
@@ -98,9 +98,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
           {/* Company */}
           <div>
-            <h5 className="text-white text-[13.5px] font-semibold mb-4 uppercase tracking-wider">
+            <h3 className="text-white text-[13.5px] font-semibold mb-4 uppercase tracking-wider">
               Company
-            </h5>
+            </h3>
             <div className="flex flex-col gap-2.5 text-[13.5px]">
               <a
                 href="/#trust"
@@ -121,9 +121,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
           {/* Legal */}
           <div>
-            <h5 className="text-white text-[13.5px] font-semibold mb-4 uppercase tracking-wider">
+            <h3 className="text-white text-[13.5px] font-semibold mb-4 uppercase tracking-wider">
               Legal
-            </h5>
+            </h3>
             <div className="flex flex-col gap-2.5 text-[13.5px]">
               <a
                 href="/privacy-policy"
@@ -151,7 +151,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[12.5px] text-white/40 gap-3">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[12.5px] text-white/70 gap-3">
           <span>© 2026 Mavrix Realty. All rights reserved.</span>
           <span>Designed and Developed by Pluslogix</span>
         </div>

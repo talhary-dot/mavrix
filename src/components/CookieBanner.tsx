@@ -42,9 +42,9 @@ export const CookieBanner: React.FC = () => {
     <>
       {/* Cookie Banner */}
       <div className="fixed bottom-4 left-4 right-4 md:right-auto md:max-w-md z-[200] bg-white border border-[#E4DCC9] rounded-2xl p-5 shadow-2xl animate-modal text-[#1C1B18]">
-        <h4 className="text-[15px] font-bold text-[#0D1B3D] mb-1.5">
+        <div className="text-[15px] font-bold text-[#0D1B3D] mb-1.5">
           We respect your privacy
-        </h4>
+        </div>
         <p className="text-[12.5px] text-[#5B5A54] leading-relaxed mb-4">
           Cookies help us improve your experience, deliver personalized content, and analyze traffic. You can choose which cookies to allow by clicking <b>Customize</b>.
         </p>
@@ -76,9 +76,9 @@ export const CookieBanner: React.FC = () => {
         <div className="fixed inset-0 z-[310] flex items-center justify-center p-4 bg-[#0D1B3D]/65 backdrop-blur-sm">
           <div className="relative bg-white rounded-2xl w-full max-w-lg max-h-[85vh] overflow-y-auto p-6 md:p-8 shadow-2xl animate-modal">
             <div className="flex items-center justify-between pb-3 border-b border-[#E4DCC9]">
-              <h3 className="text-lg font-bold text-[#0D1B3D]">
+              <div className="text-lg font-bold text-[#0D1B3D]">
                 Personalize Cookie Preferences
-              </h3>
+              </div>
               <button
                 onClick={() => setModalOpen(false)}
                 className="text-gray-400 hover:text-gray-600 border-0 bg-transparent cursor-pointer text-xl p-1"
@@ -96,7 +96,7 @@ export const CookieBanner: React.FC = () => {
               <div className="p-3.5 bg-[#FAF6EF] rounded-xl border border-[#E4DCC9]">
                 <div className="flex items-center justify-between mb-1">
                   <span className="font-semibold text-[13.5px] text-[#0D1B3D]">Necessary Cookies</span>
-                  <span className="text-[11px] font-bold text-[#B8834A] uppercase bg-[#EED3B0]/40 px-2 py-0.5 rounded">Always Active</span>
+                  <span className="text-[11px] font-bold text-[#8C5823] uppercase bg-[#EED3B0]/40 px-2 py-0.5 rounded">Always Active</span>
                 </div>
                 <p className="text-[12px] text-[#5B5A54]">
                   Necessary cookies enable essential site features like secure requests and navigation.

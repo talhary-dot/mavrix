@@ -10,6 +10,7 @@
     --gold-light: #EED3B0;
     --gold: #D4A574;
     --gold-deep: #B8834A;
+    --gold-text: #8C5823;
     --cream: #FAF6EF;
     --cream-warm: #F2E9D8;
     --paper: #FFFFFF;
@@ -59,8 +60,8 @@
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold-deep);
-  font-weight: 600;
+  color: var(--gold-text);
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -69,8 +70,8 @@
 .eyebrow::before {
   content: "";
   width: 22px;
-  height: 1px;
-  background: var(--gold-deep);
+  height: 1.5px;
+  background: currentColor;
   display: inline-block;
 }
 
@@ -81,8 +82,8 @@
 .eyebrow.center::after {
   content: "";
   width: 22px;
-  height: 1px;
-  background: var(--gold-deep);
+  height: 1.5px;
+  background: currentColor;
   display: inline-block;
 }
 

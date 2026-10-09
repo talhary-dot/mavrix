@@ -38,13 +38,13 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
               <div className="flex gap-4">
                 <button
                   onClick={() => navigate('/privacy-policy')}
-                  className="text-[#B8834A] hover:text-[#0D1B3D] font-semibold underline"
+                  className="text-[#8C5823] hover:text-[#0D1B3D] font-semibold underline"
                 >
                   Privacy Policy
                 </button>
                 <button
                   onClick={() => navigate('/terms-of-use')}
-                  className="text-[#B8834A] hover:text-[#0D1B3D] font-semibold underline"
+                  className="text-[#8C5823] hover:text-[#0D1B3D] font-semibold underline"
                 >
                   Terms of Use
                 </button>
@@ -54,7 +54,7 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
             {/* 1. Overview */}
             <section className="space-y-4">
               <h2 className="text-xl md:text-2xl font-bold text-[#0D1B3D] flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#B8834A]">
+                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#8C5823]">
                   1
                 </span>
                 Overview
@@ -72,7 +72,7 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
             {/* 2. SMS / Text Message Communications (TCPA Compliance) */}
             <section className="space-y-4">
               <h2 className="text-xl md:text-2xl font-bold text-[#0D1B3D] flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#B8834A]">
+                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#8C5823]">
                   2
                 </span>
                 SMS / Text Message Communications (TCPA Compliance)
@@ -126,7 +126,7 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
             {/* 3. Email Communications (CAN-SPAM Compliance) */}
             <section className="space-y-4">
               <h2 className="text-xl md:text-2xl font-bold text-[#0D1B3D] flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#B8834A]">
+                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#8C5823]">
                   3
                 </span>
                 Email Communications (CAN-SPAM Compliance)
@@ -149,7 +149,7 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
             {/* 4. Data Usage & Privacy */}
             <section className="space-y-4">
               <h2 className="text-xl md:text-2xl font-bold text-[#0D1B3D] flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#B8834A]">
+                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#8C5823]">
                   4
                 </span>
                 Data Usage &amp; Privacy
@@ -167,7 +167,7 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
             {/* 5. Eligibility */}
             <section className="space-y-4">
               <h2 className="text-xl md:text-2xl font-bold text-[#0D1B3D] flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#B8834A]">
+                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#8C5823]">
                   5
                 </span>
                 Eligibility
@@ -186,7 +186,7 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
             {/* 6. Changes to This Policy */}
             <section className="space-y-4">
               <h2 className="text-xl md:text-2xl font-bold text-[#0D1B3D] flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#B8834A]">
+                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#8C5823]">
                   6
                 </span>
                 Changes to This Policy
@@ -201,7 +201,7 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
             {/* 7. Contact Information */}
             <section className="space-y-4">
               <h2 className="text-xl md:text-2xl font-bold text-[#0D1B3D] flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#B8834A]">
+                <span className="w-8 h-8 rounded-lg bg-[#FAF6EF] border border-[#E4DCC9] flex items-center justify-center text-sm font-bold text-[#8C5823]">
                   7
                 </span>
                 Contact Information
@@ -211,16 +211,16 @@ export const CommunicationsPolicy: React.FC<LegalPageProps> = ({ navigate }) => 
               </p>
               <div className="bg-[#FAF6EF] p-5 rounded-2xl border border-[#E4DCC9] space-y-2 text-sm text-[#0D1B3D]">
                 <p className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-[#B8834A]" />
+                  <Mail className="w-4 h-4 text-[#8C5823]" />
                   <span>Email:</span>
-                  <a href="mailto:support@mavrixrealty.com" className="font-semibold text-[#B8834A] underline">
+                  <a href="mailto:support@mavrixrealty.com" className="font-semibold text-[#8C5823] underline">
                     support@mavrixrealty.com
                   </a>
                 </p>
                 <p className="flex items-center gap-2">
-                  <PhoneCall className="w-4 h-4 text-[#B8834A]" />
+                  <PhoneCall className="w-4 h-4 text-[#8C5823]" />
                   <span>Phone:</span>
-                  <a href="tel:5176285353" className="font-semibold text-[#0D1B3D] hover:text-[#B8834A]">
+                  <a href="tel:5176285353" className="font-semibold text-[#0D1B3D] hover:text-[#8C5823]">
                     (517) 628-5353
                   </a>
                 </p>

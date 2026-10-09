@@ -38,13 +38,13 @@ export const TermsOfUse: React.FC<LegalPageProps> = ({ navigate }) => {
               <div className="flex gap-4">
                 <button
                   onClick={() => navigate('/privacy-policy')}
-                  className="text-[#B8834A] hover:text-[#0D1B3D] font-semibold underline"
+                  className="text-[#8C5823] hover:text-[#0D1B3D] font-semibold underline"
                 >
                   Privacy Policy
                 </button>
                 <button
                   onClick={() => navigate('/communications-policy')}
-                  className="text-[#B8834A] hover:text-[#0D1B3D] font-semibold underline"
+                  className="text-[#8C5823] hover:text-[#0D1B3D] font-semibold underline"
                 >
                   Communications Policy
                 </button>
@@ -70,7 +70,7 @@ export const TermsOfUse: React.FC<LegalPageProps> = ({ navigate }) => {
               </h2>
               <p className="text-[#5B5A54] text-sm">
                 If you are having difficulty accessing any feature or content on the Website, please contact us at:{' '}
-                <a href="mailto:privacy@mavrixrealty.com" className="text-[#B8834A] font-semibold underline">
+                <a href="mailto:privacy@mavrixrealty.com" className="text-[#8C5823] font-semibold underline">
                   privacy@mavrixrealty.com
                 </a>
               </p>
@@ -228,7 +228,7 @@ export const TermsOfUse: React.FC<LegalPageProps> = ({ navigate }) => {
               </h2>
               <p className="text-[#5B5A54] text-sm">
                 If you have questions regarding these Terms of Use, please contact us at:{' '}
-                <a href="mailto:privacy@mavrixrealty.com" className="text-[#B8834A] font-semibold underline">
+                <a href="mailto:privacy@mavrixrealty.com" className="text-[#8C5823] font-semibold underline">
                   privacy@mavrixrealty.com
                 </a>
               </p>

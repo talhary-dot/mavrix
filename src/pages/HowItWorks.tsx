@@ -43,7 +43,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
                   <path d="M15.5 15.5L21 21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-[#0D1B3D] mb-1">We screen</h4>
+              <div className="font-bold text-base text-[#0D1B3D] mb-1">We screen</div>
               <p className="text-xs sm:text-[13px] text-[#5B5A54]">
                 Every prospect is qualified before you're ever involved.
               </p>
@@ -55,7 +55,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
                   <path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2C10.8 18.6 5.4 13.2 4.5 5.2A2 2 0 0 1 6.5 3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-[#0D1B3D] mb-1">We call & record</h4>
+              <div className="font-bold text-base text-[#0D1B3D] mb-1">We call & record</div>
               <p className="text-xs sm:text-[13px] text-[#5B5A54]">
                 Our team speaks with the prospect and records the conversation.
               </p>
@@ -68,7 +68,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
                   <path d="M6 11.5a6 6 0 0 0 12 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-[#0D1B3D] mb-1">You review</h4>
+              <div className="font-bold text-base text-[#0D1B3D] mb-1">You review</div>
               <p className="text-xs sm:text-[13px] text-[#5B5A54]">
                 The recording and prospect details land in your inbox.
               </p>
@@ -81,7 +81,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
                   <path d="M9 12l2 2 4-4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h4 className="font-bold text-base text-[#0D1B3D] mb-1">You decide, then pay</h4>
+              <div className="font-bold text-base text-[#0D1B3D] mb-1">You decide, then pay</div>
               <p className="text-xs sm:text-[13px] text-[#5B5A54]">
                 Interested? We send a payment link — never before.
               </p>
@@ -152,7 +152,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
                     ★
                   </div>
                   <div>
-                    <h4 className="text-[15px] font-bold text-[#0D1B3D] mb-1">{item.title}</h4>
+                    <h3 className="text-[15px] font-bold text-[#0D1B3D] mb-1">{item.title}</h3>
                     <p className="text-[13.5px] text-[#5B5A54]">{item.desc}</p>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
                     ✦
                   </div>
                   <div>
-                    <h4 className="text-[15px] font-bold text-[#0D1B3D] mb-1">{item.title}</h4>
+                    <h3 className="text-[15px] font-bold text-[#0D1B3D] mb-1">{item.title}</h3>
                     <p className="text-[13.5px] text-[#5B5A54]">{item.desc}</p>
                   </div>
                 </div>
@@ -281,7 +281,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
                     ❖
                   </div>
                   <div>
-                    <h4 className="text-[15px] font-bold text-[#0D1B3D] mb-1">{item.title}</h4>
+                    <h3 className="text-[15px] font-bold text-[#0D1B3D] mb-1">{item.title}</h3>
                     <p className="text-[13.5px] text-[#5B5A54]">{item.desc}</p>
                   </div>
                 </div>
