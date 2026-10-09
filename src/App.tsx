@@ -1,47 +1,73 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { LeadModal } from './components/LeadModal';
-import { CookieBanner } from './components/CookieBanner';
+import { normalizeRoute, loadPage, preloadPage, pageCache, type PageComponent } from './routes';
 
-// Pages
-import { Home } from './pages/Home';
-import { HowItWorks } from './pages/HowItWorks';
-import { Services } from './pages/Services';
-import { Pricing } from './pages/Pricing';
-import { ContactUs } from './pages/ContactUs';
-import { PrivacyPolicy } from './pages/PrivacyPolicy';
-import { TermsOfUse } from './pages/TermsOfUse';
-import { CommunicationsPolicy } from './pages/CommunicationsPolicy';
+// Lazy-load LeadModal and CookieBanner so they do not block initial page bundle or main thread
+const LazyLeadModal = React.lazy(() =>
+  import('./components/LeadModal').then((m) => ({ default: m.LeadModal }))
+);
+const LazyCookieBanner = React.lazy(() =>
+  import('./components/CookieBanner').then((m) => ({ default: m.CookieBanner }))
+);
 
 interface AppProps {
   initialPath?: string;
 }
 
 export const App: React.FC<AppProps> = ({ initialPath = '/' }) => {
-  // Normalize path by stripping trailing slash (except root)
-  const normalizePath = (p: string) => {
-    const clean = p.split('?')[0].split('#')[0];
-    if (clean.length > 1 && clean.endsWith('/')) {
-      return clean.slice(0, -1);
-    }
-    return clean || '/';
-  };
-
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
-      return normalizePath(window.location.pathname);
+      return normalizeRoute(window.location.pathname);
     }
-    return normalizePath(initialPath);
+    return normalizeRoute(initialPath);
+  });
+
+  const [PageComponent, setPageComponent] = useState<PageComponent | null>(() => {
+    return pageCache.get(currentPath) || null;
   });
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPlan, setModalPlan] = useState<string>('Pay Per Lead');
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
+
+  // Defer non-critical CookieBanner until main thread is idle
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if ('requestIdleCallback' in window) {
+      const id = (window as unknown as { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(() =>
+        setShowCookieBanner(true)
+      );
+      return () => (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+    } else {
+      const t = setTimeout(() => setShowCookieBanner(true), 300);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  // Load component on route change if not already cached
+  useEffect(() => {
+    let active = true;
+    const cached = pageCache.get(currentPath);
+    if (cached) {
+      setPageComponent(() => cached);
+    } else {
+      loadPage(currentPath).then((comp) => {
+        if (active && comp) {
+          setPageComponent(() => comp);
+        }
+      });
+    }
+    return () => {
+      active = false;
+    };
+  }, [currentPath]);
 
   // Handle browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(normalizePath(window.location.pathname));
+      const path = normalizeRoute(window.location.pathname);
+      setCurrentPath(path);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -70,7 +96,10 @@ export const App: React.FC<AppProps> = ({ initialPath = '/' }) => {
     }
 
     const [pathname, hash] = to.split('#');
-    const normalized = normalizePath(pathname);
+    const normalized = normalizeRoute(pathname);
+
+    // Preload target page chunk immediately
+    preloadPage(normalized);
 
     if (normalized !== currentPath) {
       window.history.pushState({}, '', to);
@@ -101,30 +130,6 @@ export const App: React.FC<AppProps> = ({ initialPath = '/' }) => {
     setModalOpen(false);
   };
 
-  // Route matching
-  const renderRoute = () => {
-    switch (currentPath) {
-      case '/':
-        return <Home navigate={navigate} onOpenModal={handleOpenModal} />;
-      case '/how-it-works':
-        return <HowItWorks navigate={navigate} onOpenModal={handleOpenModal} />;
-      case '/services':
-        return <Services navigate={navigate} onOpenModal={handleOpenModal} />;
-      case '/pricing':
-        return <Pricing navigate={navigate} onOpenModal={handleOpenModal} />;
-      case '/contact-us':
-        return <ContactUs navigate={navigate} onOpenModal={handleOpenModal} />;
-      case '/privacy-policy':
-        return <PrivacyPolicy navigate={navigate} />;
-      case '/terms-of-use':
-        return <TermsOfUse navigate={navigate} />;
-      case '/communications-policy':
-        return <CommunicationsPolicy navigate={navigate} />;
-      default:
-        return <Home navigate={navigate} onOpenModal={handleOpenModal} />;
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF6EF] text-[#1C1B18] antialiased selection:bg-[#D4A574]/30 selection:text-[#0D1B3D]">
       <Header
@@ -133,17 +138,31 @@ export const App: React.FC<AppProps> = ({ initialPath = '/' }) => {
         navigate={navigate}
       />
       <main className="flex-grow">
-        {renderRoute()}
+        {PageComponent ? (
+          <PageComponent
+            navigate={navigate}
+            onOpenModal={handleOpenModal}
+          />
+        ) : null}
       </main>
       <Footer navigate={navigate} />
 
-      {/* Global Interactive Elements */}
-      <LeadModal
-        isOpen={modalOpen}
-        onClose={handleCloseModal}
-        initialPlan={modalPlan}
-      />
-      <CookieBanner />
+      {/* Lazy-loaded modal rendered only when active */}
+      {modalOpen && (
+        <Suspense fallback={null}>
+          <LazyLeadModal
+            isOpen={modalOpen}
+            onClose={handleCloseModal}
+            initialPlan={modalPlan}
+          />
+        </Suspense>
+      )}
+
+      {showCookieBanner && (
+        <Suspense fallback={null}>
+          <LazyCookieBanner />
+        </Suspense>
+      )}
     </div>
   );
 };

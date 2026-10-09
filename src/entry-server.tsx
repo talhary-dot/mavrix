@@ -1,6 +1,26 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { App } from './App';
+import { pageCache } from './routes';
+
+// Synchronous static imports for SSR
+import { Home } from './pages/Home';
+import { HowItWorks } from './pages/HowItWorks';
+import { Services } from './pages/Services';
+import { Pricing } from './pages/Pricing';
+import { ContactUs } from './pages/ContactUs';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { TermsOfUse } from './pages/TermsOfUse';
+import { CommunicationsPolicy } from './pages/CommunicationsPolicy';
+
+pageCache.set('/', Home);
+pageCache.set('/how-it-works', HowItWorks);
+pageCache.set('/services', Services);
+pageCache.set('/pricing', Pricing);
+pageCache.set('/contact-us', ContactUs);
+pageCache.set('/privacy-policy', PrivacyPolicy);
+pageCache.set('/terms-of-use', TermsOfUse);
+pageCache.set('/communications-policy', CommunicationsPolicy);
 
 interface RouteMeta {
   title: string;
