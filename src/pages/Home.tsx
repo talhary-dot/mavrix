@@ -156,7 +156,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
 
       // Convert vertical wheel to horizontal slider scrolling
       e.preventDefault();
-      el.scrollLeft += e.deltaY;
+      el.scrollBy({ left: e.deltaY, behavior: 'auto' });
     };
 
     el.addEventListener('wheel', handleWheel, { passive: false });
@@ -180,7 +180,9 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
   };
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0) return;
+    // Only capture desktop mouse pointer. 
+    // Touch devices (Android, iOS Safari) use native hardware momentum scrolling!
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
     const el = sliderRef.current;
     if (!el) return;
 
@@ -196,7 +198,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging || !sliderRef.current) return;
+    if (!isDragging || !sliderRef.current || e.pointerType !== 'mouse') return;
     const dx = e.clientX - dragStartX.current;
     if (Math.abs(dx) > 6) {
       hasDragged.current = true;
@@ -451,8 +453,8 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerCancel}
-            className={`flex gap-5 overflow-x-auto no-scrollbar py-3 px-1 select-none touch-pan-y cursor-grab active:cursor-grabbing ${
-              isDragging ? 'cursor-grabbing select-none' : ''
+            className={`prop-slider flex gap-5 overflow-x-auto no-scrollbar py-3 px-1 select-none cursor-grab active:cursor-grabbing ${
+              isDragging ? 'is-dragging cursor-grabbing select-none' : ''
             }`}
           >
             {PROPERTY_CARDS.map((card, i) => (
