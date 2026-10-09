@@ -53,18 +53,20 @@ export function render(url: string) {
     </React.StrictMode>
   );
 
+  const canonicalUrl = cleanPath === '/' ? 'https://mavrix-zeta.vercel.app/' : `https://mavrix-zeta.vercel.app${cleanPath}`;
+
   const head = `
     <title>${meta.title}</title>
     <meta name="description" content="${meta.description}" />
     <meta property="og:title" content="${meta.title}" />
     <meta property="og:description" content="${meta.description}" />
-    <meta property="og:url" content="https://www.mavrixrealty.com${cleanPath}" />
+    <meta property="og:url" content="${canonicalUrl}" />
     <meta property="og:site_name" content="Mavrix Realty" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${meta.title}" />
     <meta name="twitter:description" content="${meta.description}" />
-    <link rel="canonical" href="https://www.mavrixrealty.com${cleanPath}" />
+    <link rel="canonical" href="${canonicalUrl}" />
   `;
 
   return { html, head };

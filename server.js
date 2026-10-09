@@ -44,6 +44,36 @@ async function createServer() {
     ? (await import(pathToFileURL(prodServerEntryPath).href)).render
     : null;
 
+  // Direct handlers for robots.txt and sitemap.xml
+  app.get('/robots.txt', (req, res) => {
+    const candidates = [
+      path.resolve(__dirname, 'dist/client/robots.txt'),
+      path.resolve(__dirname, 'public/robots.txt'),
+    ];
+    for (const p of candidates) {
+      if (fs.existsSync(p)) {
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        return res.sendFile(p);
+      }
+    }
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.send("User-agent: *\nAllow: /\n\nSitemap: https://mavrix-zeta.vercel.app/sitemap.xml\n");
+  });
+
+  app.get('/sitemap.xml', (req, res) => {
+    const candidates = [
+      path.resolve(__dirname, 'dist/client/sitemap.xml'),
+      path.resolve(__dirname, 'public/sitemap.xml'),
+    ];
+    for (const p of candidates) {
+      if (fs.existsSync(p)) {
+        res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+        return res.sendFile(p);
+      }
+    }
+    res.status(404).end();
+  });
+
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
 
