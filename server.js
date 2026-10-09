@@ -33,8 +33,11 @@ async function createServer() {
   }
 
   // Pre-load production template and render function
-  const prodTemplate = isProduction
-    ? fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8')
+  const templatePath = fs.existsSync(path.resolve(__dirname, 'dist/template.html'))
+    ? path.resolve(__dirname, 'dist/template.html')
+    : path.resolve(__dirname, 'dist/client/index.html');
+  const prodTemplate = isProduction && fs.existsSync(templatePath)
+    ? fs.readFileSync(templatePath, 'utf-8')
     : '';
   const prodServerEntryPath = path.resolve(__dirname, 'dist/server/entry-server.js');
   const prodRender = isProduction

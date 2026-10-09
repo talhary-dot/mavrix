@@ -1,6 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
+  "outputDirectory": "dist/client",
   "functions": {
     "api/index.js": {
       "includeFiles": "dist/**",
@@ -8,21 +9,10 @@
       "maxDuration": 15
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/assets/(.*)",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      },
-      "dest": "/dist/client/assets/$1"
-    },
-    {
-      "src": "/favicon.(svg|ico|png)",
-      "dest": "/dist/client/favicon.$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.js"
+      "source": "/(.*)",
+      "destination": "/api/index.js"
     }
   ]
 }
