@@ -9,7 +9,7 @@ const unsplash = (base: string, w: number, q = 70) => `${base}?auto=format&fit=c
 const srcSet = (base: string, widths: number[], q = 70) =>
   widths.map((w) => `${unsplash(base, w, q)} ${w}w`).join(', ');
 
-const HERO_WIDTHS = [640, 960, 1280, 1800];
+const HERO_WIDTHS = [480, 768, 1080, 1440, 1800];
 
 const HERO_SLIDES = [
   {
@@ -32,7 +32,7 @@ const HERO_SLIDES = [
 
 // Used by the SSR head to preload the first (LCP candidate) hero slide
 export const HERO_PRELOAD = {
-  href: unsplash(HERO_SLIDES[0].image, 1280),
+  href: unsplash(HERO_SLIDES[0].image, 1080),
   srcSet: srcSet(HERO_SLIDES[0].image, HERO_WIDTHS),
   sizes: '100vw',
 };
@@ -155,9 +155,11 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
   };
 
   useEffect(() => {
-    checkScrollButtons();
+    const rafId = requestAnimationFrame(checkScrollButtons);
     const el = sliderRef.current;
-    if (!el) return;
+    if (!el) {
+      return () => cancelAnimationFrame(rafId);
+    }
 
     el.addEventListener('scroll', checkScrollButtons, { passive: true });
     window.addEventListener('resize', checkScrollButtons);
@@ -192,6 +194,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
     el.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
+      cancelAnimationFrame(rafId);
       el.removeEventListener('scroll', checkScrollButtons);
       el.removeEventListener('wheel', handleWheel);
       window.removeEventListener('resize', checkScrollButtons);
@@ -273,7 +276,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
           {HERO_SLIDES.slice(0, slidesLoaded).map((slide, index) => (
             <img
               key={index}
-              src={unsplash(slide.image, 1280)}
+              src={unsplash(slide.image, 1080)}
               srcSet={srcSet(slide.image, HERO_WIDTHS)}
               sizes="100vw"
               alt=""

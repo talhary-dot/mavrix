@@ -17,4 +17,5 @@ html = html.replace(
 );
 
 fs.writeFileSync(path.resolve('dist/template.html'), html);
+fs.writeFileSync(path.join(clientDir, 'template.html'), html);
 fs.unlinkSync(path.join(clientDir, 'index.html'));
