@@ -4,7 +4,7 @@ import { App } from './App';
 import { pageCache } from './routes';
 
 // Synchronous static imports for SSR
-import { Home } from './pages/Home';
+import { Home, HERO_PRELOAD } from './pages/Home';
 import { HowItWorks } from './pages/HowItWorks';
 import { Services } from './pages/Services';
 import { Pricing } from './pages/Pricing';
@@ -86,7 +86,12 @@ export function render(url: string) {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${meta.title}" />
     <meta name="twitter:description" content="${meta.description}" />
-    <link rel="canonical" href="${canonicalUrl}" />
+    <link rel="canonical" href="${canonicalUrl}" />${
+      cleanPath === '/'
+        ? `
+    <link rel="preload" as="image" href="${HERO_PRELOAD.href}" imagesrcset="${HERO_PRELOAD.srcSet}" imagesizes="${HERO_PRELOAD.sizes}" fetchpriority="high" />`
+        : ''
+    }
   `;
 
   return { html, head };

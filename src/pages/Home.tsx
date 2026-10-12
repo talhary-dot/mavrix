@@ -5,29 +5,42 @@ interface HomeProps {
   navigate: (path: string) => void;
 }
 
+const unsplash = (base: string, w: number, q = 70) => `${base}?auto=format&fit=crop&w=${w}&q=${q}`;
+const srcSet = (base: string, widths: number[], q = 70) =>
+  widths.map((w) => `${unsplash(base, w, q)} ${w}w`).join(', ');
+
+const HERO_WIDTHS = [640, 960, 1280, 1800];
+
 const HERO_SLIDES = [
   {
-    image: 'https://images.unsplash.com/photo-1760473537243-72168ffd273c?auto=format&fit=crop&w=1800&q=75',
+    image: 'https://images.unsplash.com/photo-1760473537243-72168ffd273c',
     caption: 'Waterfront suburban — sample market',
   },
   {
-    image: 'https://images.unsplash.com/photo-1774836435838-2a6e7ef30206?auto=format&fit=crop&w=1800&q=75',
+    image: 'https://images.unsplash.com/photo-1774836435838-2a6e7ef30206',
     caption: 'Established neighborhood — sample market',
   },
   {
-    image: 'https://images.unsplash.com/photo-1758448755856-01d3add0177b?auto=format&fit=crop&w=1800&q=75',
+    image: 'https://images.unsplash.com/photo-1758448755856-01d3add0177b',
     caption: 'Downtown luxury interior — sample market',
   },
   {
-    image: 'https://images.unsplash.com/photo-1741156386380-0236c72eb6f9?auto=format&fit=crop&w=1800&q=75',
+    image: 'https://images.unsplash.com/photo-1741156386380-0236c72eb6f9',
     caption: 'Keys handed over — closing day',
   },
 ];
 
+// Used by the SSR head to preload the first (LCP candidate) hero slide
+export const HERO_PRELOAD = {
+  href: unsplash(HERO_SLIDES[0].image, 1280),
+  srcSet: srcSet(HERO_SLIDES[0].image, HERO_WIDTHS),
+  sizes: '100vw',
+};
+
 const PROPERTY_CARDS = [
   {
     chip: 'Single-Family',
-    image: 'https://images.unsplash.com/photo-1760473537243-72168ffd273c?auto=format&fit=crop&w=700&q=70',
+    image: 'https://images.unsplash.com/photo-1760473537243-72168ffd273c',
     title: 'Waterfront Suburban',
     desc: 'Buyer-lead territory — move-up families, 3–4 bed range.',
     type: 'Lead type: Buyer',
@@ -35,7 +48,7 @@ const PROPERTY_CARDS = [
   },
   {
     chip: 'Residential',
-    image: 'https://images.unsplash.com/photo-1774836435838-2a6e7ef30206?auto=format&fit=crop&w=700&q=70',
+    image: 'https://images.unsplash.com/photo-1774836435838-2a6e7ef30206',
     title: 'Established Neighborhood',
     desc: 'Seller-lead territory — long-tenure homeowners exploring a sale.',
     type: 'Lead type: Seller',
@@ -43,7 +56,7 @@ const PROPERTY_CARDS = [
   },
   {
     chip: 'Luxury Condo',
-    image: 'https://images.unsplash.com/photo-1758448755856-01d3add0177b?auto=format&fit=crop&w=700&q=70',
+    image: 'https://images.unsplash.com/photo-1758448755856-01d3add0177b',
     title: 'Downtown Luxury',
     desc: 'Higher price-point buyers — best matched to Standard or Premium plans.',
     type: 'Lead type: Buyer',
@@ -51,7 +64,7 @@ const PROPERTY_CARDS = [
   },
   {
     chip: 'Modern Farmhouse',
-    image: 'https://images.unsplash.com/photo-1741156386380-0236c72eb6f9?auto=format&fit=crop&w=700&q=70',
+    image: 'https://images.unsplash.com/photo-1741156386380-0236c72eb6f9',
     title: 'Historic Country Estate',
     desc: 'Acreage and suburban fringe — active move-in ready buyers.',
     type: 'Lead type: Buyer',
@@ -59,7 +72,7 @@ const PROPERTY_CARDS = [
   },
   {
     chip: 'Single-Family',
-    image: 'https://images.unsplash.com/photo-1760473537243-72168ffd273c?auto=format&fit=crop&w=700&q=70',
+    image: 'https://images.unsplash.com/photo-1760473537243-72168ffd273c',
     title: 'High-Growth Suburban',
     desc: 'Relocation buyers — pre-approved with quick closing readiness.',
     type: 'Lead type: Buyer',
@@ -97,6 +110,23 @@ const FAQ_ITEMS = [
 export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
   // Hero slider state
   const [currentSlide, setCurrentSlide] = useState(0);
+  // Only mount slide images up to this index, so off-screen slides don't compete with the first paint
+  const [slidesLoaded, setSlidesLoaded] = useState(1);
+
+  useEffect(() => {
+    // Warm the next slide once the page has finished loading
+    const loadNext = () => setSlidesLoaded((n) => Math.max(n, 2));
+    if (document.readyState === 'complete') {
+      loadNext();
+    } else {
+      window.addEventListener('load', loadNext, { once: true });
+    }
+    return () => window.removeEventListener('load', loadNext);
+  }, []);
+
+  useEffect(() => {
+    setSlidesLoaded((n) => Math.max(n, Math.min(currentSlide + 2, HERO_SLIDES.length)));
+  }, [currentSlide]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -240,12 +270,17 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
       <section className="relative overflow-hidden min-h-[660px] flex items-center bg-[#0D1B3D]">
         {/* Slides */}
         <div className="absolute inset-0 z-0">
-          {HERO_SLIDES.map((slide, index) => (
-            <div
+          {HERO_SLIDES.slice(0, slidesLoaded).map((slide, index) => (
+            <img
               key={index}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              src={unsplash(slide.image, 1280)}
+              srcSet={srcSet(slide.image, HERO_WIDTHS)}
+              sizes="100vw"
+              alt=""
+              fetchPriority={index === 0 ? 'high' : 'low'}
+              decoding={index === 0 ? 'sync' : 'async'}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
                 }`}
-              style={{ backgroundImage: `url('${slide.image}')` }}
             />
           ))}
         </div>
@@ -467,7 +502,13 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
                     {card.chip}
                   </span>
                   <img
-                    src={card.image}
+                    src={unsplash(card.image, 640)}
+                    srcSet={srcSet(card.image, [320, 480, 640])}
+                    sizes="(min-width: 640px) 320px, 280px"
+                    width={320}
+                    height={208}
+                    loading="lazy"
+                    decoding="async"
                     alt={card.title}
                     draggable={false}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none select-none"
@@ -736,7 +777,13 @@ export const Home: React.FC<HomeProps> = ({ onOpenModal, navigate }) => {
           <div className="lg:col-span-5 relative">
             <div className="rounded-2xl overflow-hidden shadow-2xl relative">
               <img
-                src="https://images.unsplash.com/photo-1758448755856-01d3add0177b?auto=format&fit=crop&w=900&q=75"
+                src={unsplash('https://images.unsplash.com/photo-1758448755856-01d3add0177b', 768, 65)}
+                srcSet={srcSet('https://images.unsplash.com/photo-1758448755856-01d3add0177b', [480, 768, 1080], 65)}
+                sizes="(min-width: 1180px) 450px, (min-width: 1024px) 38vw, calc(100vw - 48px)"
+                width={768}
+                height={400}
+                loading="lazy"
+                decoding="async"
                 alt="Bright luxury interior"
                 className="w-full h-[400px] object-cover"
               />

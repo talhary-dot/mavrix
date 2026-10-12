@@ -10,12 +10,15 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
     <div className="w-full">
       {/* HERO WITH BACKGROUND PHOTO */}
       <section className="relative overflow-hidden min-h-[440px] flex items-center justify-center text-center bg-[#0D1B3D]">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1760473537243-72168ffd273c?auto=format&fit=crop&w=1800&q=75')",
-          }}
+        <img
+          src="https://images.unsplash.com/photo-1760473537243-72168ffd273c?auto=format&fit=crop&w=1280&q=70"
+          srcSet={[640, 960, 1280, 1800]
+            .map((w) => `https://images.unsplash.com/photo-1760473537243-72168ffd273c?auto=format&fit=crop&w=${w}&q=70 ${w}w`)
+            .join(', ')}
+          sizes="100vw"
+          alt=""
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#091128]/85 via-[#091128]/75 to-[#091128]/90" />
         <div className="relative z-10 wrap py-20 px-6">
@@ -296,7 +299,13 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenModal, navigate })
         <div className="wrap">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1741156386380-0236c72eb6f9?auto=format&fit=crop&w=1400&q=75"
+              src="https://images.unsplash.com/photo-1741156386380-0236c72eb6f9?auto=format&fit=crop&w=1280&q=70"
+              srcSet={[640, 960, 1280]
+                .map((w) => `https://images.unsplash.com/photo-1741156386380-0236c72eb6f9?auto=format&fit=crop&w=${w}&q=70 ${w}w`)
+                .join(', ')}
+              sizes="(min-width: 1180px) 1132px, calc(100vw - 48px)"
+              loading="lazy"
+              decoding="async"
               alt="Keys handed over on closing day"
               className="w-full h-[380px] object-cover"
             />
